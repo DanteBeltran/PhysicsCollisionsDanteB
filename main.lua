@@ -52,6 +52,27 @@ beam:toBack()
 -- add to physics
 physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
 
+-- Create a verticle beam
+local beam2 = display.newImage("Images/beam.png", 0, 0)
+
+-- set the x and y pos
+beam2.x = display.contentCenterX/.55
+beam2.y = display.contentCenterY/.65
+
+-- set the beam size
+beam2.width = display.contentWidth/2
+beam2.height = display.contentHeight/10
+
+-- rotate the beam -60 degees so its on an angle
+beam2:rotate(-45)
+
+-- send it to the back layer
+beam2:toBack()
+
+-- add to physics
+physics.addBody(beam2, "static", {friction=0.5, bounce=0.3})
+
+
 local bkg = display.newImage("Images/bkg.png", 0, 0)
 
 -- set  the x and y pos
@@ -64,6 +85,7 @@ bkg.height = display.contentHeight
 
 -- send to back
 bkg:toBack()
+
 
 ----------------------------------------------------------------------------------------
 -- FUNCTIONS
@@ -84,14 +106,39 @@ end
 -- create the second ball
 local function secondBall()
 
-	-- creating first ball
-	local ball2 = display.newImage("Images/super_ball.png", 0, 0)
+	-- creating second ball
+	local ball2 = display.newImage("Images/super_ball.png", 2, 2)
 
 	-- adding the physics
-	physics.addBody(ball2, {density=1.0, friction=0.5, bounce=0.3, radius=12.5})
+	physics.addBody(ball2, {density=1.0, friction=2, bounce=1, radius=20})
 
 	-- make it smaller than the original size
-	ball2:scale(0.5, 0.5)
+	ball2:scale(2, 2)
+end
+
+-- create the third ball
+local function thirdBall()
+
+	-- creating third ball
+	local ball3 = display.newImage("Images/super_ball.png", 0, 0)
+
+	-- adding the physics
+	physics.addBody(ball3, {density=1.0, friction=0.5, bounce=0.3, radius=25})
+end
+
+---------------------------------------------------------------------------------------
+
+-- create the fourth ball
+local function fourthBall()
+
+	-- creating fourth ball
+	local ball4 = display.newImage("Images/super_ball.png", 800, 600)
+
+	-- adding the physics
+	physics.addBody(ball4, {density=1.0, friction=0.5, bounce=0.3, radius=12.5})
+
+	-- make it smaller than the original size
+	ball4:scale(0.5, 0.5)
 end
 
 --------------------------------------------------------------------------------------
@@ -99,3 +146,5 @@ end
 --------------------------------------------------------------------------------------
 timer.performWithDelay( 0, firstBall)
 timer.performWithDelay( 500, secondBall)
+timer.performWithDelay(800, thirdBall)
+timer.performWithDelay(1000, fourthBall)
